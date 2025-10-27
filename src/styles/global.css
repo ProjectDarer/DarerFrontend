@@ -221,6 +221,7 @@ body {
 }
 
 .coming-soon {
+      margin-top: 30px;
   /* static game-themed styling */
   --cs-magenta: #ff00ff;
   --cs-cyan: #00fff7;
@@ -247,8 +248,7 @@ body {
   cursor: pointer;
     justify-content: center;
     text-align: center;
-    font-family: serif;
-    font-style: italic;
+   
     color: #00fff7;
     font-size: 20px;
     font-weight: 600;
@@ -478,7 +478,10 @@ body {
   margin-top: 0;
   text-shadow: 0 0 0.9375rem #00fff7;
 }
-
+.footer-section > img{
+      height: 44px;
+    width: 52px;
+}
 .footer-section h4 {
   color: #ff00ff;
   font-size: clamp(0.875rem, 2.5vw, 1.0625rem);

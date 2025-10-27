@@ -358,7 +358,7 @@ body {
   backdrop-filter: blur(10px);
   border-top: 2px solid rgba(255, 0, 255, 0.3);
   z-index: 100;
-  padding: 15px 0;
+ 
 }
 
 .footer-container {
@@ -442,8 +442,6 @@ body {
 
 .footer-bottom {
   text-align: center;
-  margin-top: 20px;
-  padding-top: 15px;
   border-top: 1px solid rgba(255, 255, 0, 0.2);
 }
 

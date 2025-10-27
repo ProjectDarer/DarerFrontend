@@ -117,7 +117,7 @@ const LandingPage = () => {
           <button className="watcher" onClick={handleWatcherClick}>WATCHER</button>
         </div>
 
-        {/* <p className="coming-soon">Coming Soon</p> */}
+        <p className="coming-soon">Coming Soon</p>
         
         {/* Custom Gaming Alert Modal */}
         <GamingAlertModal />
@@ -128,7 +128,7 @@ const LandingPage = () => {
         {/* Footer content from index.html (repeated structure) */}
         <div className="footer-container">
           <div className="footer-section">
-            <h3>DARER</h3>
+            <img src="./videos/logo.png" alt="" />
             <p>The world’s first AI dare platform.</p>
           </div>
           
