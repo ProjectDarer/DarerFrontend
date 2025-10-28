@@ -20,14 +20,15 @@ body {
 }
 
 .logo {
+  margin: 10px;
   font-size: 26px;
   color: #00fff7;
 /**  text-shadow: 0 0 5px #00fff7, 0 0 10px #00fff7;**/
 }
 .logo img {
-    padding: 11px;
-    width: 80px;
-    height: 70px;
+    padding: 0px;
+      height: 44px;
+    width: 52px;
 }
 .header-buttons .btn {
   border: 2px solid;

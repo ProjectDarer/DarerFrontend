@@ -207,18 +207,19 @@ body {
   left: 100%;
 }
 
-.tagline {
-    margin-bottom: 15px;
-  color: #00fff7;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
 .heading{
-  color: #ff00ff;
+  color: #00fff7; /* Blue now */
   font-weight: bold;
   margin-top: 35px;
 }
+
+.tagline {
+  color: #ff00ff; /* Pink now */
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
 
 .coming-soon {
       margin-top: 30px;
