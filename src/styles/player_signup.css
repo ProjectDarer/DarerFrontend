@@ -241,6 +241,7 @@ body {
 }
 
 .form-group {
+ width: 100%;
   position: relative;
 }
 

@@ -76,9 +76,9 @@ const WatcherSignupPage = () => {
 
   return (
     <>
-      <div class="bg-animation">
-        <div class="bg-particles"></div>
-        <div class="bg-grid"></div>
+      <div className="bg-animation">
+        <div className="bg-particles"></div>
+        <div className="bg-grid"></div>
       </div>
       <GamingHeader />
       <AudioPlayer audioId="watcherMusic" src="/videos/darer_music.mp3" />
@@ -106,9 +106,9 @@ const WatcherSignupPage = () => {
                 />
                 <div className="input-glow"></div>
               </div>
-             <button type="submit" class="signup-btn">
+             <button type="submit" className="signup-btn">
             <span>START WATCHING</span>
-            <div class="btn-glow"></div>
+            <div className="btn-glow"></div>
           </button>
             </form>
           </div>

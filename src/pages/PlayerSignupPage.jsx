@@ -86,9 +86,9 @@ const PlayerSignupPage = () => {
 
   return (
     <>
-      <div class="bg-animation">
-        <div class="bg-particles"></div>
-        <div class="bg-grid"></div>
+      <div className="bg-animation">
+        <div className="bg-particles"></div>
+        <div className="bg-grid"></div>
       </div>
       <GamingHeader />
       {/* AudioPlayer is now a component, replacing the inline JS logic */}
