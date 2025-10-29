@@ -21,17 +21,17 @@ const PlayerSignupPage = () => {
       const header = document.querySelector('.gaming-header');
       const footer = document.querySelector('.gaming-footer');
       const main = document.querySelector('.main-content');
-      
+
       if (!header || !footer || !main) return;
-      
+
       const headerH = header.getBoundingClientRect().height;
       const footerH = footer.getBoundingClientRect().height;
       const viewportH = window.innerHeight;
       const target = Math.max(0, viewportH - headerH - footerH);
-      
+
       main.style.minHeight = target + 'px';
       main.style.maxHeight = target + 'px';
-      
+
       document.body.style.overflow = (window.innerWidth >= 769) ? 'hidden' : 'auto';
     };
 
@@ -48,44 +48,48 @@ const PlayerSignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email) {
       showAlert('⚠️ Email Required', 'Please enter your email address to continue with player signup.', 'warning');
       return;
     }
-    
+
     if (!isValidEmail(email)) {
       showAlert('❌ Invalid Email', 'Please enter a valid email address (e.g., user@example.com).', 'error');
       return;
     }
-    
+
     // Simulate API call logic
     try {
-        // Replace with actual fetch call if backend is available
-        console.log('Simulating POST to /api/player_signup');
-        
-        // Mock API response logic from original JS
-        const mockResponse = { ok: true, json: async () => ({ exists: false, message: 'Success' }) }; 
-        const responseData = await mockResponse.json();
+      // Replace with actual fetch call if backend is available
+      console.log('Simulating POST to /api/player_signup');
 
-        if (mockResponse.ok) {
-            if (responseData.exists) {
-                showAlert('🎮 Welcome Back!', 'You\'re already registered as a Player. Ready to start streaming and earning?', 'info');
-            } else {
-                showAlert('🎉 Signup Successful!', 'Welcome to Darer as a Player! You can now start streaming and getting dared by viewers.', 'success');
-            }
+      // Mock API response logic from original JS
+      const mockResponse = { ok: true, json: async () => ({ exists: false, message: 'Success' }) };
+      const responseData = await mockResponse.json();
+
+      if (mockResponse.ok) {
+        if (responseData.exists) {
+          showAlert('🎮 Welcome Back!', 'You\'re already registered as a Player. Ready to start streaming and earning?', 'info');
         } else {
-            showAlert('❌ Signup Failed', 'Something went wrong during signup. Please check your connection and try again.', 'error');
+          showAlert('🎉 Signup Successful!', 'Welcome to Darer as a Player! You can now start streaming and getting dared by viewers.', 'success');
         }
+      } else {
+        showAlert('❌ Signup Failed', 'Something went wrong during signup. Please check your connection and try again.', 'error');
+      }
     } catch (error) {
-        showAlert('🌐 Network Error', 'Unable to connect to the server. Please check your internet connection and try again.', 'error');
+      showAlert('🌐 Network Error', 'Unable to connect to the server. Please check your internet connection and try again.', 'error');
     }
-    
+
     setEmail('');
   };
 
   return (
     <>
+      <div class="bg-animation">
+        <div class="bg-particles"></div>
+        <div class="bg-grid"></div>
+      </div>
       <GamingHeader />
       {/* AudioPlayer is now a component, replacing the inline JS logic */}
       <AudioPlayer audioId="playerMusic" src="/videos/darer_music.mp3" />
@@ -98,16 +102,16 @@ const PlayerSignupPage = () => {
               <div className="title-glow"></div>
               <p className="signup-subtitle">Stream. Get Dared. Get Paid.</p>
             </div>
-            
+
             <form className="signup-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="email" className="form-label">EMAIL ADDRESS</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  className="form-input" 
-                  placeholder="Enter your email address" 
-                  required 
+                <input
+                  type="email"
+                  id="email"
+                  className="form-input"
+                  placeholder="Enter your email address"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />

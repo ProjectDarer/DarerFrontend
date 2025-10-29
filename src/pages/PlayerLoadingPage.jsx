@@ -110,6 +110,10 @@ const PlayerLoadingPage = () => {
 
   return (
     <>
+    <div class="bg-animation">
+    <div class="bg-particles"></div>
+    <div class="bg-grid"></div>
+  </div>
       <GamingHeader />
       <main className="main-content">
         {/* Circle Loader */}
