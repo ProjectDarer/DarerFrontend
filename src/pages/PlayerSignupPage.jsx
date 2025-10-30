@@ -1,19 +1,19 @@
+// src/pages/PlayerSignupPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import GamingHeader from '../components/GamingHeader';
 import { useLocation } from 'react-router-dom';
 import AudioPlayer from '../components/AudioPlayer';
-import '../styles/player_signup.css'; // Contains the styles for this page and footer structure
-// NOTE: You would reuse the useGamingAlert hook logic provided in LandingPage.jsx
+import '../styles/player_signup.css';
+// Import the new custom alert hook
+import { useCustomGamingAlert } from '../components/CustomGamingAlert'; 
 
 const PlayerSignupPage = () => {
   const [email, setEmail] = useState('');
   const location = useLocation(); // To track if we came from circle.html
 
-  // Mock showAlert for simplicity, replace with your custom hook
-  const showAlert = (title, message, type) => {
-    console.log(`[Alert - ${type}] ${title}: ${message}`);
-    alert(`${title}\n${message}`);
-  };
+  // 1. Replace mock showAlert with the custom hook
+  const { showCustomAlert, AlertComponent } = useCustomGamingAlert(); 
 
   // Replaces the setMainContentHeight logic from public/javascripts/player_signup.js
   useEffect(() => {
@@ -50,35 +50,40 @@ const PlayerSignupPage = () => {
     e.preventDefault();
 
     if (!email) {
-      showAlert('⚠️ Email Required', 'Please enter your email address to continue with player signup.', 'warning');
+      // 2. Use showCustomAlert (Warning)
+      showCustomAlert('⚠️ Email Required', 'Please enter your email address to continue with player signup.', 'warning');
       return;
     }
 
     if (!isValidEmail(email)) {
-      showAlert('❌ Invalid Email', 'Please enter a valid email address (e.g., user@example.com).', 'error');
+      // 2. Use showCustomAlert (Error)
+      showCustomAlert('❌ Invalid Email', 'Please enter a valid email address (e.g., user@example.com).', 'error');
       return;
     }
 
     // Simulate API call logic
     try {
-      // Replace with actual fetch call if backend is available
       console.log('Simulating POST to /api/player_signup');
 
-      // Mock API response logic from original JS
+      // Mock API response logic
       const mockResponse = { ok: true, json: async () => ({ exists: false, message: 'Success' }) };
       const responseData = await mockResponse.json();
 
       if (mockResponse.ok) {
         if (responseData.exists) {
-          showAlert('🎮 Welcome Back!', 'You\'re already registered as a Player. Ready to start streaming and earning?', 'info');
+          // 2. Use showCustomAlert (Info)
+          showCustomAlert('🎮 Welcome Back!', 'You\'re already registered as a Player. Ready to start streaming and earning?', 'info');
         } else {
-          showAlert('🎉 Signup Successful!', 'Welcome to Darer as a Player! You can now start streaming and getting dared by viewers.', 'success');
+          // 2. Use showCustomAlert (Success)
+          showCustomAlert('🎉 Signup Successful!', 'Welcome to Darer as a Player! You can now start streaming and getting dared by viewers.', 'success');
         }
       } else {
-        showAlert('❌ Signup Failed', 'Something went wrong during signup. Please check your connection and try again.', 'error');
+        // 2. Use showCustomAlert (Error)
+        showCustomAlert('❌ Signup Failed', 'Something went wrong during signup. Please check your connection and try again.', 'error');
       }
     } catch (error) {
-      showAlert('🌐 Network Error', 'Unable to connect to the server. Please check your internet connection and try again.', 'error');
+      // 2. Use showCustomAlert (Error)
+      showCustomAlert('🌐 Network Error', 'Unable to connect to the server. Please check your internet connection and try again.', 'error');
     }
 
     setEmail('');
@@ -142,6 +147,9 @@ const PlayerSignupPage = () => {
         </div>
         <div className="footer-bottom"><p>&copy; 2025 DARER. All rights reserved</p></div>
       </footer>
+      
+      {/* 3. Render the Custom Alert Modal */}
+      <AlertComponent />
     </>
   );
 };

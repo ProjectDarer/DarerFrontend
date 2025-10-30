@@ -1,17 +1,16 @@
+// src/pages/WatcherSignupPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import GamingHeader from '../components/GamingHeader';
 import AudioPlayer from '../components/AudioPlayer';
-import { Link } from 'react-router-dom';
-import '../styles/player_signup.css'; // Uses the same visual style as player signup
+import '../styles/player_signup.css';
+import { useCustomGamingAlert } from '../components/CustomGamingAlert'; 
 
 const WatcherSignupPage = () => {
   const [email, setEmail] = useState('');
-  // Use the same mock showAlert or your custom hook here
-
-  const showAlert = (title, message, type) => {
-    console.log(`[Alert - ${type}] ${title}: ${message}`);
-    alert(`${title}\n${message}`);
-  };
+  
+  // Use the custom alert hook
+  const { showCustomAlert, AlertComponent } = useCustomGamingAlert(); 
 
   // Content height logic migrated from watcher_signup.js
   useEffect(() => {
@@ -44,31 +43,38 @@ const WatcherSignupPage = () => {
     e.preventDefault();
     
     if (!email) {
-      showAlert('⚠️ Email Required', 'Please enter your email address to continue with watcher signup.', 'warning');
+      // Use the custom alert with 'warning' type, and pass the exact title requested by the user
+      showCustomAlert('⚠️ Email Required', 'Please enter your email address to continue with watcher signup.', 'warning');
       return;
     }
     
     if (!isValidEmail(email)) {
-      showAlert('❌ Invalid Email', 'Please enter a valid email address (e.g., user@example.com).', 'error');
+      // Use the custom alert with 'error' type
+      showCustomAlert('❌ Invalid Email', 'Please enter a valid email address (e.g., user@example.com).', 'error');
       return;
     }
     
     try {
         console.log('Simulating POST to /api/watcher_signup');
-        const mockResponse = { ok: true, json: async () => ({ exists: false, message: 'Success' }) }; 
+        // Let's mock a case where the user is already registered, triggering the 'info' alert
+        const mockResponse = { ok: true, json: async () => ({ exists: true, message: 'Success' }) }; 
         const responseData = await mockResponse.json();
 
         if (mockResponse.ok) {
             if (responseData.exists) {
-                showAlert('👁️ Welcome Back!', 'You\'re already registered as a Watcher. Ready to start daring players?', 'info');
+                // Use the custom alert with 'info' type
+                showCustomAlert('👁️ Welcome Back!', 'You\'re already registered as a Watcher. Ready to start daring players?', 'info');
             } else {
-                showAlert('🎉 Signup Successful!', 'Welcome to Darer as a Watcher! You can now watch streams and dare players in real-time.', 'success');
+                // Use the custom alert with 'success' type
+                showCustomAlert('🎉 Signup Successful!', 'Welcome to Darer as a Watcher! You can now watch streams and dare players in real-time.', 'success');
             }
         } else {
-            showAlert('❌ Signup Failed', 'Something went wrong during signup.', 'error');
+            // Use the custom alert with 'error' type
+            showCustomAlert('❌ Signup Failed', 'Something went wrong during signup.', 'error');
         }
     } catch (error) {
-        showAlert('🌐 Network Error', 'Unable to connect to the server.', 'error');
+        // Use the custom alert with 'error' type
+        showCustomAlert('🌐 Network Error', 'Unable to connect to the server.', 'error');
     }
     
     setEmail('');
@@ -130,6 +136,9 @@ const WatcherSignupPage = () => {
         </div>
         <div className="footer-bottom"><p>&copy; 2025 DARER. All rights reserved</p></div>
       </footer>
+      
+      {/* Render the Custom Alert Modal */}
+      <AlertComponent />
     </>
   );
 };
